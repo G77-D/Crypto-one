@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import './App.css';
+import './App.css';
 import Coin from './Coin'
 
 
@@ -26,28 +26,33 @@ const filteredCoins = coins.filter(coin =>
 	)
 
 	return (
-	<div className='coin-ap'>
-	<div className='coin-search'>
-		<h1 className='coin-text'>Search a Currency</h1>
-		<form>
-			<input type='text' placeholder='Search' className='coin-input' onChange= {handleChange} />
-		</form>
-	</div>
-	{filteredCoins.map(coin=>{
-		return (
-			<Coin
-				key={coin.id}
-				name={coin.name}
-				image={coin.image}
-				symbol={coin.symbol}
-				marketcap={coin.market_cap}
-				volume={coin.total_volume}
-				price={coin.price}
-				priceChange={coin.price_change_percentage_24h}
-			/>
-		);
-	})}
-	</div>
+		<div className="coin-app">
+			<div className="coin-search">
+				<h1 className="coin-text">Search a currency</h1>
+				<form>
+					<input
+						className="coin-input"
+						type="text"
+						onChange={handleChange}
+						placeholder="Search"
+					/>
+				</form>
+			</div>
+			{filteredCoins.map((coin) => {
+				return (
+					<Coin
+						key={coin.id}
+						name={coin.name}
+						price={coin.current_price}
+						symbol={coin.symbol}
+						marketcap={coin.total_volume}
+						volume={coin.market_cap}
+						image={coin.image}
+						priceChange={coin.price_change_percentage_24h}
+					/>
+				);
+			})}
+		</div>
 	);
 }
 
